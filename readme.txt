@@ -11,3 +11,12 @@ express.json()
 JavaScript object
    ↓
 req.body
+---------------------------------------
+console.log(
+process
+process.env
+process.env.port
+process.argv
+process.pid
+process.cwd()
+process.version)
