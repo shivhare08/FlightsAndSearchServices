@@ -72,4 +72,7 @@ JavaScript is the language; Node.js is a runtime environment that allows JavaScr
 making it possible to build backend applications with JavaScript.
 
 -------------------------------------------------------------------------------------------------
-npx sequelize init - it creates migration , config(config.json) , seeders , models(index.js) folder 
+-npm i sequelize
+-npx sequelize init - it creates migration , config(config.json) - we put pass and username of our db , seeders , models(index.js) folder
+-Once you have added your db config (inside src folder) , go to the src folder from your terminal and execute
+-npx sequelize db:create - to create db
