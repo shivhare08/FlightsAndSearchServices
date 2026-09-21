@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const { PORT , NAME} = require('./config/serverConfig')
+const CityRepo = require('./repository/city_repo')
 
 const setupAndStartServer = ()=>{
     const app = express(); //create an express object
@@ -10,9 +11,14 @@ const setupAndStartServer = ()=>{
     //app.use(express.urlencoded({extended:true})) for traditional HTML form data,
 
 
-    app.listen(PORT,()=>{
+    app.listen(PORT,async ()=>{
         console.log(`server started at ${PORT}`)
         console.log(NAME)
+        const repo = new CityRepo();
+        repo.createCity({
+            name : "Gwalior",
+            country :"India"
+        })
     })
 }
 
