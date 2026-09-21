@@ -76,3 +76,99 @@ making it possible to build backend applications with JavaScript.
 -npx sequelize init - it creates migration , config(config.json) - we put pass and username of our db , seeders , models(index.js) folder
 -Once you have added your db config (inside src folder) , go to the src folder from your terminal and execute
 -npx sequelize db:create - to create db
+
+---------------------------------------------------------------------------------------------------------
+
+A flights belongs to an airoplane but one airoplane can be used in multiple flights
+A city has many airports but one airport belongs to a city
+One airport can have many flights , but a flights belongs to one airport
+
+
+https://www.npmjs.com/package/sequelize-cli
+
+Commands:
+  sequelize db:migrate                        Run pending migrations
+  sequelize db:migrate:schema:timestamps:add  Update migration table to have timestamps
+  sequelize db:migrate:status                 List the status of all migrations
+  sequelize db:migrate:undo                   Reverts a migration
+  sequelize db:migrate:undo:all               Revert all migrations ran
+  sequelize db:seed                           Run specified seeder
+  sequelize db:seed:undo                      Deletes data from the database
+  sequelize db:seed:all                       Run every seeder
+  sequelize db:seed:undo:all                  Deletes data from the database
+  sequelize db:create                         Create database specified by configuration
+  sequelize db:drop                           Drop database specified by configuration
+  sequelize init                              Initializes project
+  sequelize init:config                       Initializes configuration
+  sequelize init:migrations                   Initializes migrations
+  sequelize init:models                       Initializes models
+  sequelize init:seeders                      Initializes seeders
+  sequelize migration:generate                Generates a new migration file      [aliases: migration:create]
+  sequelize model:generate                    Generates a model and its migration [aliases: model:create]
+  sequelize seed:generate                     Generates a new seed file     
+
+
+  | Change                | New migration? |
+| --------------------- | -------------- |
+| Add column            | ✅ Yes          |
+| Remove column         | ✅ Yes          |
+| Change column type    | ✅ Yes          |
+| Rename column         | ✅ Yes          |
+| Create new table      | ✅ Yes          |
+| Delete table          | ✅ Yes          |
+| Add/remove constraint | ✅ Yes          |
+
+
+
+
+1)npx sequelize model:generate --name City --attributes name:String 
+to create city.js model file and migration with more details
+
+2)npx sequelize db:migrate
+we do need to run this command to create the actual table in MYSQL
+
+
+You run:
+
+npx sequelize model:generate --name City --attributes name:String
+                    |
+                    ↓
+          Generates two things
+             /          \
+            ↓            ↓
+        Model.js      Migration.js
+           |              |
+           ↓              ↓
+     Application       Database
+     representation    instructions
+
+Model = blueprint your application uses
+Migration = history/instructions for building or changing the real database.
+------------------------------------------------------------------------------------------------------
+For index file in models - Central place for all the models
+
+models/
+│
+├── index.js
+├── city.js
+├── department.js
+└── user.js
+
+Each file defines one model:
+
+city.js        → City model
+department.js  → Department model
+user.js        → User model
+
+But your application needs a way to load all of them together. That's where:
+
+models/index.js
+
+
+const City = require('./city');
+const Department = require('./department');
+
+module.exports = {
+    City,
+    Department
+};
