@@ -15,10 +15,12 @@ const setupAndStartServer = ()=>{
         console.log(`server started at ${PORT}`)
         console.log(NAME)
         const repo = new CityRepo();
-        repo.createCity({
-            name : "Gwalior",
-            country :"India"
-        })
+        // repo.createCity({
+        //     name : "Gwalior",
+        //     country :"India"
+        // })
+
+        repo.deleteCity(7);
     })
 }
 

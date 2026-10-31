@@ -2,7 +2,6 @@
 
 const { City } = require('../models/index')
 
-
 class CityRepository{
     async createCity({name , country}){
         try{
@@ -16,7 +15,7 @@ class CityRepository{
             throw {error}
         }
     }
-
+    
     async deleteCity(cityId){
         try {
             await City.destroy({
