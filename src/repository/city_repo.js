@@ -15,7 +15,7 @@ class CityRepository{
             throw {error}
         }
     }
-    
+
     async deleteCity(cityId){
         try {
             await City.destroy({
@@ -26,6 +26,32 @@ class CityRepository{
         } catch (error) {
             throw {error}
         }
+    }
+    
+    async getCity(cityId){
+        try{
+            const name = await City.findOne({
+                where:{
+                    id:cityId
+                }
+            })
+
+            console.log(name.name);
+        }catch(error){
+            console.log("Something went wrong")
+        }
+    }
+
+
+    async updateCity(cityId , updateName1 , updateName2){
+        await City.update({
+            name : updateName1,
+            country:updateName2
+        },{
+            where:{
+                id:cityId
+            }
+        })
     }
 }
 
